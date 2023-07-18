@@ -75,5 +75,36 @@ public class LombokAccessorsDemo2 {
 ```
 
 ### prefix
+این property یه لیستی از کاراکتر میگیره و برای هر فیلد چک میکنه، اگه فیلدی در پیشوندش کاراکترهای داخل این property رو داشته باشه ، اون بخش از فیلد روی متد getter و setter مربوطه ش ignore میشه . مثال :
+```
+@Getter @Setter
+@Accessors(prefix = {"user", "hash$"})
+public class LombokAccessorsDemo3 {
 
+  private String userName;
+  private String hash$key;  
+}
+```
+
+```
+public class LombokAccessorsDemo3 {
+
+  private String userName;
+  private String hash$key;
+
+  public String getName() {
+    return this.userName;
+  }
+  public String getKey() {
+    return this.hash$key;
+  }
+  public void setName(final String userName) {
+    this.userName = userName;
+  }
+
+  public void setKey(final String hash$key) {
+    this.hash$key = hash$key;
+  }
+}
+```
 
