@@ -108,5 +108,51 @@ public class LombokAccessorsDemo3 {
 }
 ```
 
-## @Expose
+## @SerializedName
+برای درک این انوتیشن ابتدا یه توضیح کوتاه راجع به serialization میدم، serialization برای تبدیل یه object به یه json string هست و بالعکس، deserialization برای تبدیل json string به object هستش. برای مثال :
+```
+public class User{
+    private String userName;
+    private Integer userAge;
 
+    public User(String name, Integer age){
+        userName = name;
+        userAge = age;
+    }
+}
+```
+در ادامه object user رو serialize میکنیم:
+```
+User user = new User("Ahmed", 30);
+Gson gson = new Gson();
+String jsonString = gson.toJson(user);
+```
+خروجی مدنظر :
+```
+{
+    "userName":"Ahmed",
+    "userAge":30
+}
+```
+حالا اگه من انوتیشن SerializedName رو توی object user استفاده کنم، به شکل زیر میشه :
+```
+public class User{
+
+    @SerializedName("name")
+    private String userName;
+    @SerializedName("age")
+    private Integer userAge;
+
+    public User(String name, Integer age){
+        userName = name;
+        userAge = age;
+    }
+}
+```
+خروجی هم مثل قبل :
+```
+{
+    "name":"Ahmed",
+    "age":30
+}
+```
