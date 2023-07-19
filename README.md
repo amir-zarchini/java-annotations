@@ -156,3 +156,27 @@ public class User{
     "age":30
 }
 ```
+
+## @Expose
+این انوتیشن اجازه کنترل serialize و deserialize رو به ما میده و برای این کار دو پارامتر serialize و deserialize داره که به صورت default هر جفتشون true هست. به عنوان مثال برای serialize و deserialize با استفاده از Expose@ ابتدا یه gson object میسازیم:
+```
+Gson gsonBuilder = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+```
+حالا طبق قطعه کد زیر برای userName ، پارامتر `deserialize=false` میکنیم در نتیجه این فیلد مقدار `null` رو به ما برمیگردونه:
+```
+@SerializedName("name")
+@Expose(deserialize = false)
+private String userName;
+```
+به همین شکل اگه برای userName پارامتر `serialize=false` باشه :
+```
+@SerializedName("name")
+@Expose(serialize = false)
+private String userName;
+```
+در نتیجه json string خروجی فقظ userAge رو نشون میده :
+```
+{
+    "age":30
+}
+```
