@@ -180,3 +180,7 @@ private String userName;
     "age":30
 }
 ```
+
+## @Inject
+این انوتیشن مشابه @Authwire در spring  عملکرد کاملا مشابه با اون رو داره ، و جفت شون بحث dependency injection یا به اصطلاح wiring کردن object ها رو در سطح اپلیکیشن انجام میدن
+نکته : اسپرینگ توصیه کرده به جای @Authwire بهتره با final کردن وابستگی ها و هم چنین گذاشتن انوتیشن @RequiredArgsConstructor این کار انجام بشه ، چون در بهینه کردن استفاده از resource ها ( مموری) تاثیر گذاره ( استفاده از @Authwire و @Inject هر وابستگی ای در سطح اپلیکیشن وجود داشته باشه رو اپلیکیشن ما در compile time میسازه و بعد در run time بلافاصله بعد از compile اونا رو توی context نگهداری میکنه اما با استفاده از @RequiredArgsconstructor فقط در runtime هر موقع که نیاز به استفاده از یه dependency وجود داشته باشه از اون ایجاد میکنه)) 
